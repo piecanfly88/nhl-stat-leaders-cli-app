@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Richard Scott Salchunas'"]
   spec.email         = ["'sccrlx4ss2@yahoo.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{View current nhl stat leaders.}
+  spec.description   = %q{description to come when gem is complete.}
+  spec.homepage      = "https://github.com/piecanfly88/nhl-stat-leaders-cli-app"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

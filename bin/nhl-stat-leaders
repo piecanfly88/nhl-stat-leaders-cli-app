@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "nhl_stat_leaders"
+
+NhlStatLeaders::CLI.new.call

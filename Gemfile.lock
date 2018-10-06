@@ -2,10 +2,19 @@ PATH
   remote: .
   specs:
     nhl_stat_leaders (0.1.0)
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
   specs:
+    coderay (1.1.2)
+    method_source (0.9.0)
+    mini_portile2 (2.3.0)
+    nokogiri (1.8.5-x64-mingw32)
+      mini_portile2 (~> 2.3.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     rake (10.5.0)
 
 PLATFORMS
@@ -14,7 +23,8 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   nhl_stat_leaders!
+  pry
   rake (~> 10.0)
 
 BUNDLED WITH
-   1.16.4
+   1.16.6

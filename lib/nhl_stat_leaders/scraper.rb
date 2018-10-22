@@ -25,19 +25,18 @@ class NhlStatLeaders::Scraper
         short_handed_goals: stats.css('td:nth-child(11)').text,
         game_winning_goals: stats.css('td:nth-child(12)').text,
         overtime_goals: stats.css('td:nth-child(13)').text,
-        shots_on_goals: stats.css('td:nth-child(14)').text,
+        shots_on_goal: stats.css('td:nth-child(14)').text,
         shooting_percentage: stats.css('td:nth-child(15)').text,
         time_on_ice_per_game: stats.css('td:nth-child(16)').text,
         average_shifts_per_game: stats.css('td:nth-child(17)').text,
         faceoff_percentage: stats.css('td:nth-child(18)').text,
         shootout_percentage: stats.css('td:nth-child(19)').text
       }
-
+      
       all_athlete_stat_lines << athlete_stat_lines  
     end
-  all_athlete_stat_lines.drop(2)
 
+  all_athlete_stat_lines.drop(2)
   end
 
-  binding.pry
 end

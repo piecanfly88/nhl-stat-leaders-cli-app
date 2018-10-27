@@ -9,6 +9,7 @@ class NhlStatLeaders::Athlete
   end
 
   def self.create_stat_lines
+    destroy_all
     NhlStatLeaders::Scraper.scrape_stats.each {|player| self.new(player)}
   end
 
@@ -20,8 +21,10 @@ class NhlStatLeaders::Athlete
     @@all.clear
   end
 
-  def self.find_team(team)
-    @@all.select {|player| player.team == team}
+  def self.get_team
+    requested_team = gets.strip
+    user_team = @@all.select {|player| player.team == requested_team}
+    @@all = user_team
   end
 
 end

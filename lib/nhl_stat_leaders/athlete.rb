@@ -33,4 +33,10 @@ class NhlStatLeaders::Athlete
     @@all = user_player
   end
 
+  def self.sort_stat
+    requested_stat = gets.strip.to_sym
+    sorted_stats = NhlStatLeaders::Athlete.all.sort_by(&requested_stat).reverse
+    @@all = sorted_stats 
+  end
+
 end

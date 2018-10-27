@@ -23,8 +23,14 @@ class NhlStatLeaders::Athlete
 
   def self.get_team
     requested_team = gets.strip
-    user_team = @@all.select {|player| player.team == requested_team}
+    user_team = NhlStatLeaders::Athlete.all.select {|player| player.team == requested_team}
     @@all = user_team
+  end
+
+  def self.get_player
+    requested_player = gets.strip
+    user_player = NhlStatLeaders::Athlete.all.select {|player| player.name == requested_player}
+    @@all = user_player
   end
 
 end

@@ -42,8 +42,11 @@ class NhlStatLeaders::CLI
 
 
   def glossary
-    puts "list NHL stats and their descriptions"
+    NhlStatLeaders::Scraper.scrape_glossary.each do |stat_definition|
+      puts stat_definition
+    end
   end
+
   def welcome
     puts "Welcome to Nhl Stat Leaders!"
   end

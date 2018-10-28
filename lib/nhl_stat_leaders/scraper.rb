@@ -1,12 +1,7 @@
 class NhlStatLeaders::Scraper
 
-  def self.get_page
-    html = open("https://www.cbssports.com/nhl/stats/playersort/nhl/year-2018-season-regularseason-category-goals?print_rows=9999")
-    Nokogiri::HTML(html)
-  end
-
   def self.scrape_stats
-    doc = self.get_page
+    doc = Nokogiri::HTML(open("https://www.cbssports.com/nhl/stats/playersort/nhl/year-2018-season-regularseason-category-goals?print_rows=9999"))
     all_athlete_stat_lines = []
     stat_table = doc.css('table.data')
     
@@ -37,6 +32,34 @@ class NhlStatLeaders::Scraper
     end
 
   all_athlete_stat_lines[2..-2]
+  end
+
+  def self.scrape_glossary
+    glossary = []
+    doc = Nokogiri::HTML(open("https://www.cbssports.com/help/glossary/stats/hockey"))
+
+    gloss = doc.css("div #layoutRailRight").each do |stat|
+      definitions = [
+        stat.search('b')[2].text + " - " + stat.search('i')[1].text,
+        stat.search('b')[3].text + " - " + stat.search('i')[2].text,
+        stat.search('b')[4].text + " - " + stat.search('i')[3].text,
+        stat.search('b')[5].text + " - " + stat.search('i')[4].text,
+        stat.search('b')[6].text + " - " + stat.search('i')[5].text,
+        stat.search('b')[7].text + " - " + stat.search('i')[6].text,
+        stat.search('b')[8].text + " - " + stat.search('i')[7].text,
+        stat.search('b')[9].text + " - " + stat.search('i')[8].text,
+        stat.search('b')[10].text + " - " + stat.search('i')[9].text,
+        stat.search('b')[12].text + " - " + stat.search('i')[11].text,
+        stat.search('b')[14].text + " - " + stat.search('i')[13].text,
+        stat.search('b')[15].text + " - " + stat.search('i')[14].text,
+        stat.search('b')[28].text + " - " + stat.search('i')[27].text,
+        stat.search('b')[29].text + " - " + stat.search('i')[28].text
+      ]
+
+      glossary << definitions
+    end
+
+    glossary
   end
 
 end

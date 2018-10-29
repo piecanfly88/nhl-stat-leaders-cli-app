@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
+require 'terminal-table'
 
 require "nhl_stat_leaders/version"
 require "nhl_stat_leaders/cli"

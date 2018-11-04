@@ -35,30 +35,34 @@ class NhlStatLeaders::Scraper
   end
 
   def self.scrape_glossary
-    glossary = []
-    doc = Nokogiri::HTML(open("https://www.cbssports.com/help/glossary/stats/hockey"))
-
-    gloss = doc.css("div #layoutRailRight").each do |stat|
+    glossary = nil
+    doc = Nokogiri::HTML(open("https://www.milehighhockey.com/pages/stats")) 
+      
+    stat_defs = doc.css("div.c-entry-content").each do |stat| 
       definitions = [
-        stat.search('b')[2].text + " - " + stat.search('i')[1].text,
-        stat.search('b')[3].text + " - " + stat.search('i')[2].text,
-        stat.search('b')[4].text + " - " + stat.search('i')[3].text,
-        stat.search('b')[5].text + " - " + stat.search('i')[4].text,
-        stat.search('b')[6].text + " - " + stat.search('i')[5].text,
-        stat.search('b')[7].text + " - " + stat.search('i')[6].text,
-        stat.search('b')[8].text + " - " + stat.search('i')[7].text,
-        stat.search('b')[9].text + " - " + stat.search('i')[8].text,
-        stat.search('b')[10].text + " - " + stat.search('i')[9].text,
-        stat.search('b')[12].text + " - " + stat.search('i')[11].text,
-        stat.search('b')[14].text + " - " + stat.search('i')[13].text,
-        stat.search('b')[15].text + " - " + stat.search('i')[14].text,
-        stat.search('b')[28].text + " - " + stat.search('i')[27].text,
-        stat.search('b')[29].text + " - " + stat.search('i')[28].text
-      ]
+        
+        stat.search('b')[0].text + " - " + stat.search('i')[9].text,
+        stat.search('b')[1].text + " - " + stat.search('i')[1].text,
+        stat.search('b')[2].text + " - " + stat.search('i')[2].text,
+        stat.search('b')[3].text + " - " + stat.search('i')[3].text,
+        stat.search('b')[4].text + " - " + stat.search('i')[4].text,
+        stat.search('b')[5].text + " - " + stat.search('i')[5].text,
+        stat.search('b')[6].text + " - " + stat.search('i')[6].text,
+        stat.search('b')[7].text + " - " + stat.search('i')[7].text,
+        stat.search('b')[8].text + " - " + stat.search('i')[8].text,
+        stat.search('b')[9].text + " - " + stat.search('i')[9].text,
+        stat.search('b')[10].text + " - " + stat.search('i')[10].text,
+        stat.search('b')[11].text + " - " + stat.search('i')[11].text,
+        stat.search('b')[12].text + " - " + stat.search('i')[12].text,
+        stat.search('b')[16].text.sub("PSG", "SO%") + " - " + stat.search('i')[16].text.insert(-2, " divided by total attempts"),
+        stat.search('b')[19].text + " - " + stat.search('i')[19].text,
+        stat.search('b')[20].text + " - " + stat.search('i')[20,].text,
+        stat.search('b')[21].text + " - " + stat.search('i')[21].text
+      ] 
 
-      glossary << definitions
+      glossary = definitions
     end
-
+    
     glossary
   end
 

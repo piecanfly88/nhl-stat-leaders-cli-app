@@ -39,4 +39,13 @@ class NhlStatLeaders::Athlete
     @@all = sorted_stats 
   end
 
+  def self.stat_rows
+    rows = []
+    self.all.each do |player|
+      rows << :separator
+      rows << [player.name, player.position, player.team, player.games_played, player.goals, player.assists, player.points, player.plus_minus, player.penalty_min, player.power_play_goals, player.short_handed_goals, player.game_winning_goals, player.overtime_goals, player.shots_on_goal, player.shooting_percentage, player.time_on_ice_per_game, player.average_shifts_per_game, player.faceoff_percentage, player.shootout_percentage]
+    end
+    rows    
+  end
+
 end

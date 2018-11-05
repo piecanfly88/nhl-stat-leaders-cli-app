@@ -40,6 +40,9 @@ class NhlStatLeaders::CLI
     end
   end  
 
+  def display_stats
+    puts Terminal::Table.new rows: NhlStatLeaders::Athlete.stat_rows.first(60), title: "NHL STAT LEADERS", headings: ["Name", "Pos", "Team", "GP", "G", "A", "PTS", "+/-", "PIM", "SOG", "S%", "PPG", "SHG", "OTG", "GWG", "FO%", "SO%", "SHFT", "TOI"], style: {:alignment => :center, :padding_left => 1, :padding_right => 1}
+  end
 
   def glossary
     NhlStatLeaders::Scraper.scrape_glossary.each do |stat_definition|

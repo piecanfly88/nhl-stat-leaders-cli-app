@@ -2,6 +2,7 @@ require 'open-uri'
 require 'pry'
 require 'nokogiri'
 require 'terminal-table'
+require 'tty-prompt'
 
 require "nhl_stat_leaders/version"
 require "nhl_stat_leaders/cli"

@@ -43,7 +43,7 @@ class NhlStatLeaders::CLI
   def menu_options
     prompt = TTY::Prompt.new
 
-    prompt.select("Menu") do |menu|
+    prompt.select("MENU") do |menu|
       menu.choice 'View NHL Stat Leaders', "nhl"
       menu.choice 'View Team Stat Leaders', "team" 
       menu.choice 'Search Player', "player"
@@ -74,8 +74,27 @@ class NhlStatLeaders::CLI
       'Winnipeg Jets' => 'WPG'
     }
 
-    prompt.select("Select team", nhl_teams) 
+    prompt.select("SELECT NHL TEAM", nhl_teams) 
   end
+
+  def select_stat
+    prompt = TTY::Prompt.new
+
+    stats = {
+      'Name' => 'name', 'Pos' => 'position', 'Team' => 'team', 
+      'GP' => 'games_played', 'G' => 'goals', 'A' => 'assists', 
+      'PTS' => 'points', '+/-' => 'plus_minus', 'PIM' => 'penalty_min',
+      'PPG' => 'power_play_goals', 'SHG' => 'short_handed_goals',  
+      'GWG' => 'game_winning_goals', 'OTG' => 'overtime_goals', 
+      'SOG' => 'shots_on_goal', 'S%' => 'shooting_percentage',  
+      'FO%' => 'faceoff_percentage', 'SO%' => 'shootout_percentage', 
+      'SHFT' => 'average_shifts_per_game', 'TOI' => 'time_on_ice_per_game'
+    }
+
+    prompt.select('SELECT STAT' stats)
+  end
+
+
 
   def display_stats
      table = Terminal::Table.new title: "NHL STAT LEADERS", headings: ["Name", "Pos", "Team", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "SHG", "GWG", "OTG", "SOG", "S%", "FO%", "SO%", "SHFT", "TOI"], rows: NhlStatLeaders::Athlete.stat_rows.first(60)

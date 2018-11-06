@@ -91,7 +91,7 @@ class NhlStatLeaders::CLI
       'SHFT' => 'average_shifts_per_game', 'TOI' => 'time_on_ice_per_game'
     }
 
-    prompt.select('SELECT STAT' stats)
+    prompt.select('SELECT STAT', stats)
   end
 
 

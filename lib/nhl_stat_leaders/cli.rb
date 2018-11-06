@@ -41,7 +41,9 @@ class NhlStatLeaders::CLI
   end  
 
   def display_stats
-    puts Terminal::Table.new rows: NhlStatLeaders::Athlete.stat_rows.first(60), title: "NHL STAT LEADERS", headings: ["Name", "Pos", "Team", "GP", "G", "A", "PTS", "+/-", "PIM", "SOG", "S%", "PPG", "SHG", "OTG", "GWG", "FO%", "SO%", "SHFT", "TOI"], style: {:alignment => :center, :padding_left => 1, :padding_right => 1}
+     table = Terminal::Table.new title: "NHL STAT LEADERS", headings: ["Name", "Pos", "Team", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "SHG", "GWG", "OTG", "SOG", "S%", "FO%", "SO%", "SHFT", "TOI"], rows: NhlStatLeaders::Athlete.stat_rows.first(60)
+
+     puts table
   end
 
   def glossary

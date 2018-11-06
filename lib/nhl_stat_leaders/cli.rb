@@ -40,6 +40,43 @@ class NhlStatLeaders::CLI
     end
   end  
 
+  def menu_options
+    prompt = TTY::Prompt.new
+
+    prompt.select("Menu") do |menu|
+      menu.choice 'View NHL Stat Leaders', "nhl"
+      menu.choice 'View Team Stat Leaders', "team" 
+      menu.choice 'Search Player', "player"
+      menu.choice 'Glossary', "glossary"
+      menu.choice 'Exit', "exit"  
+    end
+  end
+
+  def select_team
+    prompt = TTY::Prompt.new
+
+		nhl_teams = {
+      'Anaheim Ducks' => 'ANA', 'Boston Bruins' => 'BOS',
+      'Arizona Coyotes' => 'ARI', 'Buffalo Sabres' => 'BUF',
+      'Calgary Flames' => 'CGY', 'Carolina Hurricanes' => 'CAR',
+      'Chicago Blackhawks' => 'CHI', 'Colorado Avalanche' => 'COL',
+      'Columbus Blue Jackets' => 'CLB', 'Dallas Stars' => 'DAL',
+      'Detroit Red Wings' => 'DET', 'Edmonton Oilers' => 'EDM',
+      'Florida Panthers' => 'FLA', 'Los Angeles Kings' => 'LA',
+      'Minnesota Wild' => 'MIN', 'Montreal Canadiens' => 'MON',
+      'Nashville Predators' => 'NSH', 'New Jersey Devils' => 'NJ',
+      'New York Islanders' => 'NYI', 'New York Rangers' => 'NYR',
+      'Ottawa Senators' => 'OTT', 'Philadelphia Flyers' => 'PHI',
+      'Pittsburgh Penguins' => 'PIT', 'San Jose Sharks' => 'SJ',
+      'St Louis Blues' => 'STL', 'Tampa Bay Lightning' => 'TB',
+      'Toronto Maple Leafs' => 'TOR', 'Vancouver Canucks' => 'VAN',
+      'Vegas Golden Knights' => 'LV', 'Washington Capitals' => 'WAS',
+      'Winnipeg Jets' => 'WPG'
+    }
+
+    prompt.select("Select team", nhl_teams) 
+  end
+
   def display_stats
      table = Terminal::Table.new title: "NHL STAT LEADERS", headings: ["Name", "Pos", "Team", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "SHG", "GWG", "OTG", "SOG", "S%", "FO%", "SO%", "SHFT", "TOI"], rows: NhlStatLeaders::Athlete.stat_rows.first(60)
 

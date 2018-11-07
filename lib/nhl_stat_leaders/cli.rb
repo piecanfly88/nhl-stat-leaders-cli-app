@@ -8,50 +8,17 @@ class NhlStatLeaders::CLI
   end
 
   def main_menu
-    puts "Please select from the following options by entering their corresponding numerical value"
-    puts "If you wish to return to this menu at any point simply enter 'menu'"
-    puts "If you wish to exit the program simply enter 'exit'"
-    puts ""
-    puts "1. View Stat Leaders"
-    puts "2. View Team Leaders"
-    puts "3. Search Player Stats"
-    puts "4. Glossary"
-  end
-
-  def process_selection
-    input = nil
-    while input != "exit"
-      input = gets.strip.to_i
-
-      if input == 1
-        #sort_stats
-        #display_stats
-      elsif input == 2
-        #get_team_roster
-        #sort_stats
-        #display_stats
-      elsif input == 3
-        #find_player
-        #display stats
-      elsif input == 4
-        glossary
-      else
-        puts "Enter 'menu' to return to the main menu or 'exit' to leave the program"
-      end
-    end
-  end  
-
-  def main_menu
     NhlStatLeaders::Athlete.load_all_players
     user_selection = menu_options
 
     if user_selection == "nhl"
       nhl_leaders_logic
     elsif user_selection == "team"
-      # team_leaders_logic
+      NhlStatLeaders::Athlete.get_team(select_team)
+      team_leaders_logic
     elsif user_selection == "player"
-      NhlStatLeaders::Athlete.get_player(requested_player)
-      display_stats
+      # NhlStatLeaders::Athlete.get_player(requested_player)
+      # display_stats
     elsif user_selection == "glossary"
       glossary
     elsif user_selection == "exit"
@@ -70,6 +37,21 @@ class NhlStatLeaders::CLI
     elsif user_selection == 'back_menu'
       main_menu
     end
+  end
+
+  def team_leaders_logic
+    NhlStatLeaders::Athlete.sort_stats(select_stat)
+    display_stats
+    user_selection = team_leaders_menu
+
+    if user_selection == 'stat'
+      team_leaders_logic
+    elsif user_selection == 'change'
+      NhlStatLeaders::Athlete.get_team(select_team)
+    elsif user_selection == 'menu'
+      main_menu
+    end
+    team_leaders_logic
   end
 
   def menu_options
@@ -114,7 +96,7 @@ class NhlStatLeaders::CLI
 
     prompt.select("SELECT WHAT'S NEXT:") do |menu|
       menu.choice 'Select Another Stat', 'stat' 
-      menu.choice 'Change Team', 'team' 
+      menu.choice 'Change Team', 'change' 
       menu.choice 'Menu', 'menu'
     end
   end
@@ -144,25 +126,31 @@ class NhlStatLeaders::CLI
     end
   end
 
-
-
-
   def display_stats
     table = Terminal::Table.new title: "NHL STAT LEADERS", 
     headings: ["Name", "Pos", "Team", "GP", "G", "A", "PTS", "+/-", "PIM", "PPG", "SHG", "GWG", "OTG", "SOG", "S%", "FO%", "SO%", "SHFT", "TOI"],
     rows: NhlStatLeaders::Athlete.stat_rows.first(60)
 
+    puts ""
     puts table
+    puts ""
   end
 
+
   def glossary
+    puts ""
+
     NhlStatLeaders::Scraper.scrape_glossary.each do |stat_definition|
       puts stat_definition
     end
+
+    puts ""
   end
 
   def welcome
+    puts ""
     puts "Welcome to Nhl Stat Leaders!"
+    puts ""
   end
   
   def goodbye

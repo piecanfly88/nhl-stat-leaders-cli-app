@@ -40,10 +40,28 @@ class NhlStatLeaders::CLI
     end
   end  
 
+  def main_menu
+    user_selection = menu_options
+
+    if user_selection == "nhl"
+      nhl_leaders_logic
+    elsif user_selection == "team"
+      team_leaders_logic
+    elsif user_selection == "player"
+      NhlStatLeaders::Athlete.get_player(requested_player)
+      display_stats
+    elsif user_selection == "glossary"
+      glossary
+    elsif user_selection == "exit"
+      goodbye
+    end
+    main_menu
+  end
+
   def menu_options
     prompt = TTY::Prompt.new
 
-    prompt.select("MAIN MENU") do |menu|
+    prompt.select("MAIN MENU:") do |menu|
       menu.choice 'View NHL Stat Leaders', "nhl"
       menu.choice 'View Team Stat Leaders', "team" 
       menu.choice 'Search Player', "player"
@@ -55,7 +73,7 @@ class NhlStatLeaders::CLI
   def select_team
     prompt = TTY::Prompt.new
 
-		nhl_teams = {
+    nhl_teams = {
       'Anaheim Ducks' => 'ANA', 'Boston Bruins' => 'BOS',
       'Arizona Coyotes' => 'ARI', 'Buffalo Sabres' => 'BUF',
       'Calgary Flames' => 'CGY', 'Carolina Hurricanes' => 'CAR',
@@ -78,14 +96,14 @@ class NhlStatLeaders::CLI
   end
 
   def team_leaders_menu
-		prompt = TTY::Prompt.new
+    prompt = TTY::Prompt.new
 
-		prompt.select("SELECT WHAT'S NEXT:") do |menu|
-			menu.choice 'Select Another Stat', 'stat' 
-			menu.choice 'Change Team', 'team' 
-			menu.choice 'Menu', 'menu'
-		end
-	end
+    prompt.select("SELECT WHAT'S NEXT:") do |menu|
+      menu.choice 'Select Another Stat', 'stat' 
+      menu.choice 'Change Team', 'team' 
+      menu.choice 'Menu', 'menu'
+    end
+  end
 
   def select_stat
     prompt = TTY::Prompt.new
@@ -104,14 +122,13 @@ class NhlStatLeaders::CLI
     prompt.select('NHL OFFENSIVE STATS:', stats)
   end
 
-	def nhl_leaders_menu
-		prompt = TTY::Prompt.new
-
-		prompt.select("SELECT WHAT'S NEXT") do |menu|
-			menu.choice 'Select Another Stat', "stats"
-			menu.choice 'Main Menu', "back_menu"
-		end
-	end
+  def nhl_leaders_menu
+    prompt = TTY::Prompt.new
+    prompt.select("SELECT WHAT'S NEXT:") do |menu|
+      menu.choice 'Select Another Stat', "stats"
+      menu.choice 'Main Menu', "back_menu"
+    end
+  end
 
 
 
@@ -136,6 +153,7 @@ class NhlStatLeaders::CLI
   
   def goodbye
     puts "Thank you for choosing NHL Stat Leaders as your prefered NHL stat viewer!"
+    exit
   end
 
 end

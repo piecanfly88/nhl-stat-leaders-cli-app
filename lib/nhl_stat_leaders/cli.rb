@@ -1,6 +1,7 @@
 class NhlStatLeaders::CLI
 
   def call
+    NhlStatLeaders::Athlete.create_stat_lines
     welcome
     main_menu
     goodbye
@@ -41,12 +42,13 @@ class NhlStatLeaders::CLI
   end  
 
   def main_menu
+    NhlStatLeaders::Athlete.load_all_players
     user_selection = menu_options
 
     if user_selection == "nhl"
       nhl_leaders_logic
     elsif user_selection == "team"
-      team_leaders_logic
+      # team_leaders_logic
     elsif user_selection == "player"
       NhlStatLeaders::Athlete.get_player(requested_player)
       display_stats
@@ -56,6 +58,18 @@ class NhlStatLeaders::CLI
       goodbye
     end
     main_menu
+  end
+
+  def nhl_leaders_logic
+    NhlStatLeaders::Athlete.sort_stats(select_stat)
+    display_stats
+    user_selection = nhl_leaders_menu
+
+    if user_selection == 'stats'
+      nhl_leaders_logic
+    elsif user_selection == 'back_menu'
+      main_menu
+    end
   end
 
   def menu_options

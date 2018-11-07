@@ -7,7 +7,7 @@ class NhlStatLeaders::Athlete
 
   def initialize(athlete_stat_lines)
     athlete_stat_lines.each {|key, value| self.send(("#{key}="), value)}
-    @@all << self
+    @@all << self 
   end
 
   def self.create_stat_lines
@@ -26,6 +26,11 @@ class NhlStatLeaders::Athlete
     @@stat_lines.clear
   end
 
+  def self.load_all_players
+    all_players = self.all.map{|players| players}
+    @@stat_lines = all_players
+  end
+
   def self.get_team(requested_team)
     user_team = NhlStatLeaders::Athlete.all.select {|player| player.team == requested_team}
     @@stat_lines = user_team
@@ -36,7 +41,7 @@ class NhlStatLeaders::Athlete
     @@stat_lines = user_player
   end
 
-  def self.sort_stat(requested_stat)
+  def self.sort_stats(requested_stat)
     sorted_stats = self.stat_lines.sort_by(&requested_stat.to_sym).reverse
     @@stat_lines = sorted_stats 
   end

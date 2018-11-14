@@ -91,7 +91,7 @@ class NhlStatLeaders::CLI
     prompt = TTY::Prompt.new
 
     prompt.select("SELECT WHAT'S NEXT:") do |menu|
-      menu.choice 'Select Another Stat', 'stat' 
+      menu.choice 'Select Stat', 'stat' 
       menu.choice 'Change Team', 'change' 
       menu.choice 'Menu', 'menu'
     end

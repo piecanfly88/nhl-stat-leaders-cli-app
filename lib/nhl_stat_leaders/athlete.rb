@@ -32,13 +32,8 @@ class NhlStatLeaders::Athlete
   end
 
   def self.get_team(requested_team)
-    user_team = NhlStatLeaders::Athlete.all.select {|player| player.team == requested_team}
+    user_team = self.all.select {|player| player.team == requested_team}
     @@stat_lines = user_team
-  end
-
-  def self.get_player(requested_player)
-    user_player = self.all.select {|player| player.name == requested_player}
-    @@stat_lines = user_player
   end
 
   def self.sort_stats(requested_stat)

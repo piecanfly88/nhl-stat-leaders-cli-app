@@ -16,9 +16,6 @@ class NhlStatLeaders::CLI
     elsif user_selection == "team"
       NhlStatLeaders::Athlete.get_team(select_team)
       team_leaders_logic
-    elsif user_selection == "player"
-      # NhlStatLeaders::Athlete.get_player(requested_player)
-      # display_stats
     elsif user_selection == "glossary"
       glossary
     elsif user_selection == "exit"

@@ -22,10 +22,6 @@ class NhlStatLeaders::Athlete
     @@stat_lines
   end
 
-  def self.destroy_all
-    @@stat_lines.clear
-  end
-
   def self.load_all_players
     all_players = self.all.map{|players| players}
     @@stat_lines = all_players

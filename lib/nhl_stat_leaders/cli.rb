@@ -57,8 +57,7 @@ class NhlStatLeaders::CLI
     prompt.select("MAIN MENU:") do |menu|
       menu.choice 'View NHL Stat Leaders', "nhl"
       menu.choice 'View Team Stat Leaders', "team" 
-      menu.choice 'Search Player', "player"
-      menu.choice 'Glossary', "glossary"
+      menu.choice 'View Stat Glossary', "glossary"
       menu.choice 'Exit', "exit"  
     end
   end
@@ -102,7 +101,6 @@ class NhlStatLeaders::CLI
     prompt = TTY::Prompt.new
 
     stats = {
-      'Name' => 'name', 'Pos' => 'position', 'Team' => 'team', 
       'GP' => 'games_played', 'G' => 'goals', 'A' => 'assists', 
       'PTS' => 'points', '+/-' => 'plus_minus', 'PIM' => 'penalty_min',
       'PPG' => 'power_play_goals', 'SHG' => 'short_handed_goals',  
@@ -112,7 +110,7 @@ class NhlStatLeaders::CLI
       'SHFT' => 'average_shifts_per_game', 'TOI' => 'time_on_ice_per_game'
     }
 
-    prompt.select('NHL OFFENSIVE STATS:', stats)
+    prompt.select('SELECT NHL OFFENSIVE STAT:', stats)
   end
 
   def nhl_leaders_menu
@@ -136,11 +134,9 @@ class NhlStatLeaders::CLI
 
   def glossary
     puts ""
-
     NhlStatLeaders::Scraper.scrape_glossary.each do |stat_definition|
       puts stat_definition
     end
-
     puts ""
   end
 
@@ -151,6 +147,7 @@ class NhlStatLeaders::CLI
   end
   
   def goodbye
+    puts ""
     puts "Thank you for choosing NHL Stat Leaders as your prefered NHL stat viewer!"
     exit
   end

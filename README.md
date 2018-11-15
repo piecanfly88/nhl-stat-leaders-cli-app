@@ -1,8 +1,6 @@
 # NhlStatLeaders
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nhl_stat_leaders`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This CLI gem "NHL Stat Leaders" scrapes cbssports.com for all NHL player's offensive statistics.  It allows user's to view NHL player and team leaders by selecting a statistical catagory of their choosing.   The gem also provides a convenient glossary of statistical abbreviations and definitions all in one place.  
 
 ## Installation
 

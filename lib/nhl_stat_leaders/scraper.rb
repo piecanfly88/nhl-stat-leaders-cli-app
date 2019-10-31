@@ -41,7 +41,7 @@ class NhlStatLeaders::Scraper
     stat_defs = doc.css("div.c-entry-content").each do |stat| 
       definitions = [
         
-        stat.search('b')[0].text + " - " + stat.search('i')[9].text,
+        stat.search('b')[0].text + " - " + stat.search('i')[0].text,
         stat.search('b')[1].text + " - " + stat.search('i')[1].text,
         stat.search('b')[2].text + " - " + stat.search('i')[2].text,
         stat.search('b')[3].text + " - " + stat.search('i')[3].text,

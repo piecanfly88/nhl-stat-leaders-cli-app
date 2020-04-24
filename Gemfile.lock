@@ -11,19 +11,22 @@ GEM
   specs:
     coderay (1.1.2)
     equatable (0.5.0)
+    hitimes (1.3.0)
     hitimes (1.3.0-x64-mingw32)
     method_source (0.9.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     necromancer (0.4.0)
-    nokogiri (1.10.4-x64-mingw32)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.8)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.8-x64-mingw32)
+      mini_portile2 (~> 2.4.0)
     pastel (0.7.2)
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
     pry (0.12.0)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    rake (10.5.0)
+    rake (13.0.1)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     timers (4.1.2)
@@ -45,13 +48,14 @@ GEM
     wisper (2.0.0)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
   bundler (~> 1.16)
   nhl_stat_leaders!
   pry
-  rake (~> 10.0)
+  rake (~> 13.0)
 
 BUNDLED WITH
    1.17.1

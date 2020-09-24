@@ -1,6 +1,6 @@
 # NhlStatLeaders
 
-This CLI gem "NHL Stat Leaders" scrapes cbssports.com for all NHL player's offensive statistics.  It allows user's to view NHL player and team leaders by selecting a statistical catagory of their choosing.   The gem also provides a convenient glossary of statistical abbreviations and definitions all in one place.  
+This CLI gem "NHL Stat Leaders" scrapes cbssports.com for all NHL player's offensive statistics.  It allows users to view NHL player and team leaders by selecting a statistical catagory of their choosing.  The gem also provides a convenient glossary of statistical abbreviations and definitions all in one place so you never feel lost despite how new you are to the game.  
 
 ## Installation
 
